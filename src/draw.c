@@ -6,7 +6,7 @@
 /*   By: rcannars <rcannars@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 11:15:57 by rcannars          #+#    #+#             */
-/*   Updated: 2025/02/21 11:55:09 by rcannars         ###   ########.fr       */
+/*   Updated: 2025/02/23 13:58:14 by rcannars         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,26 +78,26 @@ void	draw_celtic(t_fractal *fractal)
 	mlx_put_image_to_window(fractal->mlx, fractal->win, fractal->img, 0, 0);
 }
 
-void draw_burning_ship(t_fractal *fractal)
+void	draw_burning_ship(t_fractal *fractal)
 {
-    int x;
-    int y;
-    t_complex c;
-    int iterations;
+	int			x;
+	int			y;
+	t_complex	c;
+	int			iterations;
 
-    y = -1;
-    while (++y < HEIGHT)
-    {
-        x = -1;
-        while (++x < WIDTH)
-        {
-            c = get_scaled_coordinate(fractal, x, y);
-            iterations = iterate_burning_ship(c, MAX_ITER);
-            my_mlx_pixel_put(fractal, x, y, 
-                create_psychedelic_color(iterations, MAX_ITER, fractal->color_shift));
-        }
-    }
-    mlx_put_image_to_window(fractal->mlx, fractal->win, fractal->img, 0, 0);
+	y = -1;
+	while (++y < HEIGHT)
+	{
+		x = -1;
+		while (++x < WIDTH)
+		{
+			c = get_scaled_coordinate(fractal, x, y);
+			iterations = iterate_burning_ship(c, MAX_ITER);
+			my_mlx_pixel_put(fractal, x, y, create_psychedelic_color(iterations,
+					MAX_ITER, fractal->color_shift));
+		}
+	}
+	mlx_put_image_to_window(fractal->mlx, fractal->win, fractal->img, 0, 0);
 }
 
 void	draw_fractal(t_fractal *fractal)

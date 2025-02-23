@@ -6,7 +6,7 @@
 /*   By: rcannars <rcannars@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 11:16:06 by rcannars          #+#    #+#             */
-/*   Updated: 2025/02/21 11:54:21 by rcannars         ###   ########.fr       */
+/*   Updated: 2025/02/23 13:57:34 by rcannars         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,8 @@ int	main(int argc, char **argv)
 
 	if (argc < 2)
 	{
-		ft_printf("Usage: %s [mandelbrot/julia/celtic/burning_ship]\n", argv[0]);
+		ft_printf("Usage: %s [mandelbrot/julia/celtic/burning_ship]\n",
+			argv[0]);
 		return (1);
 	}
 	if (init_data(&fractal) == 1)

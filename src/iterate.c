@@ -6,7 +6,7 @@
 /*   By: rcannars <rcannars@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 14:43:13 by rcannars          #+#    #+#             */
-/*   Updated: 2025/02/21 11:49:42 by rcannars         ###   ########.fr       */
+/*   Updated: 2025/02/23 13:56:38 by rcannars         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,20 +62,20 @@ int	iterate_celtic(t_complex c, int max_iter)
 	return (i);
 }
 
-int iterate_burning_ship(t_complex c, int max_iter)
+int	iterate_burning_ship(t_complex c, int max_iter)
 {
-    t_complex z;
-    double temp;
-    int i;
+	t_complex	z;
+	double		temp;
+	int			i;
 
-    z.real = 0;
-    z.imag = 0;
-    i = -1;
-    while (++i < max_iter && complex_abs(z) <= 2.0)
-    {
-        temp = z.real * z.real - z.imag * z.imag + c.real;
-        z.imag = fabs(2 * z.real * z.imag) + c.imag;
-        z.real = temp;
-    }
-    return (i);
+	z.real = 0;
+	z.imag = 0;
+	i = -1;
+	while (++i < max_iter && complex_abs(z) <= 2.0)
+	{
+		temp = z.real * z.real - z.imag * z.imag + c.real;
+		z.imag = fabs(2 * z.real * z.imag) + c.imag;
+		z.real = temp;
+	}
+	return (i);
 }
