@@ -1,16 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   iterate+color.c                                    :+:      :+:    :+:   */
+/*   iterate.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rcannars <rcannars@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 14:43:13 by rcannars          #+#    #+#             */
-/*   Updated: 2025/02/19 14:57:57 by rcannars         ###   ########.fr       */
+/*   Updated: 2025/02/21 11:49:42 by rcannars         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/fractol.h"
+
+void	my_mlx_pixel_put(t_fractal *fractal, int x, int y, int color)
+{
+	char	*dst;
+
+	dst = fractal->addr + (y * fractal->line_length + x
+			* (fractal->bits_per_pixel / 8));
+	*(unsigned int *)dst = color;
+}
 
 int	iterate_julia(t_complex z, t_complex c, int max_iter)
 {
@@ -53,27 +62,20 @@ int	iterate_celtic(t_complex c, int max_iter)
 	return (i);
 }
 
-int	create_trgb(int t, int r, int g, int b)
+int iterate_burning_ship(t_complex c, int max_iter)
 {
-	return (t << 24 | r << 16 | g << 8 | b);
-}
+    t_complex z;
+    double temp;
+    int i;
 
-int	create_psychedelic_color(int iterations, int max_iter, int color_shift)
-{
-	double	t;
-	int		r;
-	int		g;
-	int		b;
-
-	if (iterations == max_iter)
-		return (0xFFFFFF);
-	t = (double)iterations / max_iter;
-	t = t * t;
-	r = sin(0.3 * t * 20 + color_shift) * 127;
-	g = sin(0.3 * t * 20 + 2 + color_shift) * 127;
-	b = sin(0.3 * t * 20 + 4 + color_shift) * 127;
-	r = (r + 127) * t;
-	g = (g + 127) * t;
-	b = (b + 127) * t;
-	return (create_trgb(0, r, g, b));
+    z.real = 0;
+    z.imag = 0;
+    i = -1;
+    while (++i < max_iter && complex_abs(z) <= 2.0)
+    {
+        temp = z.real * z.real - z.imag * z.imag + c.real;
+        z.imag = fabs(2 * z.real * z.imag) + c.imag;
+        z.real = temp;
+    }
+    return (i);
 }

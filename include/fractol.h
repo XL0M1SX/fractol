@@ -6,7 +6,7 @@
 /*   By: rcannars <rcannars@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 11:15:44 by rcannars          #+#    #+#             */
-/*   Updated: 2025/02/19 15:46:48 by rcannars         ###   ########.fr       */
+/*   Updated: 2025/02/21 12:36:23 by rcannars         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@
 # define MANDELBROT 1
 # define JULIA 2
 # define CELTIC 3
+# define BURNING_SHIP 4
 
 // Keyboard keys
 # define KEY_LEFT 65361
@@ -84,6 +85,8 @@ int				iterate_julia(t_complex z, t_complex c, int max_iter);
 void			draw_julia(t_fractal *fractal);
 int				iterate_celtic(t_complex c, int max_iter);
 void			draw_celtic(t_fractal *fractal);
+int iterate_burning_ship(t_complex c, int max_iter);
+void draw_burning_ship(t_fractal *fractal);
 void			my_mlx_pixel_put(t_fractal *fractal, int x, int y, int color);
 int				create_trgb(int t, int r, int g, int b);
 int				create_psychedelic_color(int iterations, int max_iter,
